@@ -33,6 +33,7 @@ namespace ModuleEditor.Controls
 		public ComboBox ModelLocation;
 		public CheckedListBox ModelPrefixListBox;
 		public GroupBox ItemBindGroupBox;
+		public event Action<ItemProperties> OnItemTypeChange = (p) => { };
 
 		private static Dictionary<string, List<ItemModifiersBit>> IModBitPreseted = new Dictionary<string, List<ItemModifiersBit>>
 		{
@@ -236,7 +237,7 @@ namespace ModuleEditor.Controls
 						if (btn.Checked)
 						{
 							ItemPage.SelectedItem.ItemType = (ItemProperties)ItemTypeGroupBox.Controls.IndexOf(btn);
-							UpdateAttribute();
+							OnItemTypeChange(ItemPage.SelectedItem.ItemType);
 						}
 					};
 				}
@@ -765,6 +766,7 @@ namespace ModuleEditor.Controls
 					Size = new Size(300, 250)
 				};
 				Properties.Controls.Add(ItemAttributeGroupBox);
+				OnItemTypeChange += p => UpdateAttribute();
 			}
 			#endregion
 
@@ -871,6 +873,37 @@ namespace ModuleEditor.Controls
 				ModelGroupBox.Controls.Add(labelTip);
 				ModelGroupBox.Controls.Add(ModelLocation);
 				Model.Controls.Add(ModelGroupBox);
+
+
+				OnItemTypeChange += p => 
+				{
+					if (ItemPage.SelectedItem.IsWeapon || ItemPage.SelectedItem.IsShield)
+					{
+						ItemBindGroupBox.Controls[0].Enabled = true;
+						for (int i = 1; i < 4; i++)
+							ItemBindGroupBox.Controls[i].Enabled = true;
+						ItemBindGroupBox.Controls[4].Enabled = false;
+					}
+					else if (ItemPage.SelectedItem.IsArmor)
+					{
+						ItemBindGroupBox.Controls[0].Enabled = true;
+						for (int i = 1; i < 4; i++)
+							ItemBindGroupBox.Controls[i].Enabled = false;
+						ItemBindGroupBox.Controls[4].Enabled = true;
+					}
+					else
+					{
+						for (int i = 0; i < 5; i++)
+							ItemBindGroupBox.Controls[i].Enabled = false;
+					}
+					var a = (int)((ItemPage.SelectedItem.Properties & 0xF00) >> 8);
+					if (a > 0 && a < 4)
+						(ItemBindGroupBox.Controls[a] as RadioButton).Checked = true;
+					else if (a == 0xF)
+						(ItemBindGroupBox.Controls[4] as RadioButton).Checked = true;
+					else
+						(ItemBindGroupBox.Controls[0] as RadioButton).Checked = true;
+				};
 			}
 			#endregion
 
@@ -895,30 +928,7 @@ namespace ModuleEditor.Controls
 				l <<= i;
 				ModelPrefixListBox.SetItemChecked(i, (Mesh.Value & l) == l);
 			}
-			if (ItemPage.SelectedItem.IsWeapon || ItemPage.SelectedItem.IsShield)
-			{
-				for (int i = 0; i < 4; i++)
-					ItemBindGroupBox.Controls[i].Enabled = true;
-				ItemBindGroupBox.Controls[4].Enabled = false;
-			}
-			else if (ItemPage.SelectedItem.IsArmor)
-			{
-				for (int i = 0; i < 4; i++)
-					ItemBindGroupBox.Controls[i].Enabled = false;
-				ItemBindGroupBox.Controls[4].Enabled = true;
-			}
-			else
-			{
-				for (int i = 0; i < 5; i++)
-					ItemBindGroupBox.Controls[i].Enabled = false;
-			}
-			var a = (int)((ItemPage.SelectedItem.Properties & 0xF00) >> 8);
-			if (a > 0 && a < 4)
-				(ItemBindGroupBox.Controls[a] as RadioButton).Checked = true;
-			else if (a == 0xF)
-				(ItemBindGroupBox.Controls[4] as RadioButton).Checked = true;
-			else
-				(ItemBindGroupBox.Controls[0] as RadioButton).Checked = true;
+			
 		}
 
 		private void UpdateModels()
