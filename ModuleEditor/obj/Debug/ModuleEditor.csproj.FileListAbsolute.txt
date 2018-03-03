@@ -1,0 +1,9 @@
+D:\C\MnBWarbandModuleEditor\ModuleEditor\bin\Debug\ModuleEditor.exe.config
+D:\C\MnBWarbandModuleEditor\ModuleEditor\bin\Debug\ModuleEditor.exe
+D:\C\MnBWarbandModuleEditor\ModuleEditor\bin\Debug\ModuleEditor.pdb
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.Properties.Resources.resources
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.csproj.GenerateResource.Cache
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.csproj.CoreCompileInputs.cache
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.exe
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.pdb
+D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.csprojResolveAssemblyReference.cache
