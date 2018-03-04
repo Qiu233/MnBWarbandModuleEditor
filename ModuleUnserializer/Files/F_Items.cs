@@ -46,10 +46,6 @@ namespace ModuleUnserializer.Files
 			reader.Close();
 			return obj;
 		}
-		private void Handler_Trigger(string[] trigger)
-		{
-
-		}
 		private void FromStream(StreamReader reader)
 		{
 			if (reader.ReadLine() != "itemsfile version 3")

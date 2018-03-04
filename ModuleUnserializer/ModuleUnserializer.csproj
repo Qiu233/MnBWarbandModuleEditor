@@ -43,14 +43,17 @@
   <ItemGroup>
     <Compile Include="Entities\Faction.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\Script.cs" />
     <Compile Include="Entities\SimpleTrigger.cs" />
     <Compile Include="Entities\Statement.cs" />
     <Compile Include="Entities\StatementBlock.cs" />
     <Compile Include="Files\F_Factions.cs" />
     <Compile Include="Files\F_Items.cs" />
     <Compile Include="Files\F_Language.cs" />
+    <Compile Include="Files\F_Scripts.cs" />
     <Compile Include="Files\F_SimpleTriggers.cs" />
     <Compile Include="Files\ModuleInfo.cs" />
+    <Compile Include="Entities\Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

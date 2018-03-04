@@ -23,5 +23,20 @@ namespace ModuleUnserializer.Entities
 			}
 			return block;
 		}
+		/// <summary>
+		/// 未完成
+		/// </summary>
+		/// <returns></returns>
+		public string Decompile()
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append("[\n");
+			foreach (var stmt in Statements)
+			{
+				result.Append(stmt.Decompile() + ",\n");
+			}
+			result.Append("]");
+			return result.ToString();
+		}
 	}
 }

@@ -69,6 +69,16 @@ namespace ModuleUnserializer.Entities
 			}
 			return p;
 		}
+		/// <summary>
+		/// 未完成
+		/// </summary>
+		/// <returns></returns>
+		public string Decompile()
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append(Type.ToString());
+			return result.ToString();
+		}
 	}
 
 	/// <summary>
@@ -82,7 +92,7 @@ namespace ModuleUnserializer.Entities
 	/// </summary>
 	public class Statement
 	{
-		public long Opcode;
+		public Operations Opcode;
 		public List<Param> Params;
 		private Statement()
 		{
@@ -97,7 +107,7 @@ namespace ModuleUnserializer.Entities
 		public static Statement FromString(string[] s, ref int j)
 		{
 			Statement stmt = new Statement();
-			stmt.Opcode = Convert.ToInt64(s[j++]);
+			stmt.Opcode = (Operations)Convert.ToInt64(s[j++]);
 			int m = Convert.ToInt32(s[j++]);
 			stmt.Params = new List<Param>(m);
 			for (int i = 0; i < m; i++)
@@ -105,6 +115,19 @@ namespace ModuleUnserializer.Entities
 				stmt.Params.Add(Param.FromString(s[j++]));
 			}
 			return stmt;
+		}
+		/// <summary>
+		/// 未完成
+		/// </summary>
+		/// <returns></returns>
+		public string Decompile()
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append("(" + Opcode.ToString() + ",");
+			foreach (var param in Params)
+				result.Append(param.Decompile() + ",");
+			result.Append(")");
+			return result.ToString();
 		}
 	}
 }

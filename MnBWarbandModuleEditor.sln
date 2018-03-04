@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleEditor", "ModuleEdito
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleUnserializer", "ModuleUnserializer\ModuleUnserializer.csproj", "{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleEditorConsole", "ModuleEditorConsole\ModuleEditorConsole.csproj", "{5A815E49-9DAD-4287-89CC-6C302E10ED15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A815E49-9DAD-4287-89CC-6C302E10ED15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A815E49-9DAD-4287-89CC-6C302E10ED15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A815E49-9DAD-4287-89CC-6C302E10ED15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A815E49-9DAD-4287-89CC-6C302E10ED15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

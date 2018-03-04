@@ -12,12 +12,14 @@ namespace ModuleUnserializer.Files
 		public F_Factions F_Factions;
 		public F_Items F_Items;
 		public F_SimpleTriggers F_SimpleTriggers;
+		public F_Scripts F_Scripts;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
 			F_Factions = F_Factions.LoadFromFile(this, MnBPath, module);
-			F_SimpleTriggers = F_SimpleTriggers.LoadFromFile(this, MnBPath, module);
 			F_Items = F_Items.LoadFromFile(this, MnBPath, module);
+			F_Scripts = F_Scripts.LoadFromFile(this, MnBPath, module);
+			F_SimpleTriggers = F_SimpleTriggers.LoadFromFile(this, MnBPath, module);
 		}
 	}
 }
