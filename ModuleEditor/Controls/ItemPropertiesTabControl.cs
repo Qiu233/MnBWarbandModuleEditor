@@ -35,6 +35,7 @@ namespace ModuleEditor.Controls
 		public GroupBox ItemBindGroupBox;
 		public event Action<ItemProperties> OnItemTypeChange = (p) => { };
 
+		#region IModBitPreseted
 		private static Dictionary<string, List<ItemModifiersBit>> IModBitPreseted = new Dictionary<string, List<ItemModifiersBit>>
 		{
 			{"horse",new List<ItemModifiersBit>{
@@ -153,6 +154,7 @@ namespace ModuleEditor.Controls
 				ItemModifiersBit.imod_bent,
 			} },
 		};
+		#endregion
 		public ItemPropertiesTabControl(ItemPage Page)
 		{
 			ItemPage = Page;
@@ -258,6 +260,10 @@ namespace ModuleEditor.Controls
 					Text = "下一个武器作为第二种模式",
 					Location = new Point(20, 95),
 					Size = new Size(180, 20)
+				};
+				NextItemAsMelee.CheckedChanged += (s, e) =>
+				{
+					ItemPage.SelectedItem.NextItemAsMelee = NextItemAsMelee.Checked;
 				};
 
 				Price = new LabelTextBox(60, 100, 20, "价格:")
@@ -777,133 +783,193 @@ namespace ModuleEditor.Controls
 			};
 			#region 模型
 			{
-				GroupBox ModelGroupBox = new GroupBox()
+				#region Model
 				{
-					ForeColor = Color.White,
-					Text = "模型",
-					Location = new Point(5, 5),
-					Size = new Size(270, 540)
-				};
+					GroupBox ModelGroupBox = new GroupBox()
+					{
+						ForeColor = Color.White,
+						Text = "模型",
+						Location = new Point(5, 5),
+						Size = new Size(270, 540)
+					};
 
-				ModelsListBox = new MListBox()
-				{
-					Location = new Point(5, 15),
-					Size = new Size(260, 100),
-				};
-				ModelsListBox.SelectedIndexChanged += ModelsListBox_SelectedIndexChanged;
-				Button ModelAdd = new Button()
-				{
-					Text = "添加",
-					BackColor = Color.FromArgb(120, 120, 120),
-					Location = new Point(180, 106),
-					FlatStyle = FlatStyle.Flat,
-					Size = new Size(40, 25)
-				};
-				Button ModelDelete = new Button()
-				{
-					Text = "删除",
-					BackColor = Color.FromArgb(120, 120, 120),
-					Location = new Point(225, 106),
-					FlatStyle = FlatStyle.Flat,
-					Size = new Size(40, 25)
-				};
-				ModelName = new LabelTextBox(40, 200, 20, "名称:")
-				{
-					Location = new Point(10, 135)
-				};
-				Label labelTip = new Label()
-				{
-					Text = "位置:",
-					Location = new Point(15, 162),
-					Size = new Size(40, 20)
-				};
-				ModelLocation = new ComboBox()
-				{
-					Location = new Point(55, 160),
-					Size = new Size(200, 20),
-					DropDownStyle = ComboBoxStyle.DropDownList
-				};
-				ModelLocation.Items.Add("主位置");
-				ModelLocation.Items.Add("物品栏模型");
-				ModelLocation.Items.Add("飞行模型");
-				ModelLocation.Items.Add("携带模型");
+					ModelsListBox = new MListBox()
+					{
+						Location = new Point(5, 15),
+						Size = new Size(260, 100),
+					};
+					ModelsListBox.SelectedIndexChanged += ModelsListBox_SelectedIndexChanged;
+					Button ModelAdd = new Button()
+					{
+						Text = "添加",
+						BackColor = Color.FromArgb(120, 120, 120),
+						Location = new Point(180, 106),
+						FlatStyle = FlatStyle.Flat,
+						Size = new Size(40, 25)
+					};
+					ModelAdd.Click += (s, e) =>
+					{
+						ItemPage.SelectedItem.Meshes.Add(new KeyValuePair<string, BigInteger>("new_mesh", BigInteger.Parse("0")));
+						UpdateItem();
+					};
+					Button ModelDelete = new Button()
+					{
+						Text = "删除",
+						BackColor = Color.FromArgb(120, 120, 120),
+						Location = new Point(225, 106),
+						FlatStyle = FlatStyle.Flat,
+						Size = new Size(40, 25)
+					};
+					ModelDelete.Click += (s, e) =>
+					{
+						if (ModelsListBox.Items.Count > 1)
+							ItemPage.SelectedItem.Meshes.RemoveAt(ModelsListBox.SelectedIndex);
+						else
+							MessageBox.Show(this, "至少要有一个模型", "删除失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						UpdateItem();
+					};
+					ModelName = new LabelTextBox(40, 200, 20, "名称:")
+					{
+						Location = new Point(10, 135)
+					};
+					Label labelTip = new Label()
+					{
+						Text = "位置:",
+						Location = new Point(15, 162),
+						Size = new Size(40, 20)
+					};
+					ModelLocation = new ComboBox()
+					{
+						Location = new Point(55, 160),
+						Size = new Size(200, 20),
+						DropDownStyle = ComboBoxStyle.DropDownList
+					};
+					ModelLocation.Items.Add("主位置");
+					ModelLocation.Items.Add("物品栏模型");
+					ModelLocation.Items.Add("飞行模型");
+					ModelLocation.Items.Add("携带模型");
 
-				GroupBox ModelPrefixGroupBox = new GroupBox()
-				{
-					ForeColor = Color.White,
-					Text = "前缀",
-					Location = new Point(5, 195),
-					Size = new Size(260, 205)
-				};
-				ModelPrefixListBox = new CheckedListBox()
-				{
-					Location = new Point(5, 15),
-					Size = new Size(250, 190),
-					BackColor = Color.FromArgb(30, 30, 36),
-					BorderStyle = BorderStyle.None,
-					MultiColumn = false,
-					ForeColor = Color.White
-				};
-				foreach (var prefix in Item.ItemModifiers)
-				{
-					ModelPrefixListBox.Items.Add(prefix);
+					GroupBox ModelPrefixGroupBox = new GroupBox()
+					{
+						ForeColor = Color.White,
+						Text = "前缀",
+						Location = new Point(5, 195),
+						Size = new Size(260, 205)
+					};
+					ModelPrefixListBox = new CheckedListBox()
+					{
+						Location = new Point(5, 15),
+						Size = new Size(250, 190),
+						BackColor = Color.FromArgb(30, 30, 36),
+						BorderStyle = BorderStyle.None,
+						MultiColumn = false,
+						ForeColor = Color.White
+					};
+					ModelPrefixListBox.ItemCheck += (s, e) =>
+					{
+						if (e.NewValue == CheckState.Checked)
+						{
+							long l = 1;
+							l <<= e.Index;
+							var v = ItemPage.SelectedItem.Meshes[ModelsListBox.SelectedIndex];
+							ItemPage.SelectedItem.Meshes[ModelsListBox.SelectedIndex] = new KeyValuePair<string, BigInteger>(v.Key, v.Value | l);
+						}
+						else if (e.NewValue == CheckState.Unchecked)
+						{
+							long l = 1;
+							l <<= e.Index;
+							var v = ItemPage.SelectedItem.Meshes[ModelsListBox.SelectedIndex];
+							ItemPage.SelectedItem.Meshes[ModelsListBox.SelectedIndex] = new KeyValuePair<string, BigInteger>(v.Key, ~((~v.Value) | l));
+						}
+					};
+					foreach (var prefix in Item.ItemModifiers)
+					{
+						ModelPrefixListBox.Items.Add(prefix);
+					}
+					ModelPrefixGroupBox.Controls.Add(ModelPrefixListBox);
+					ModelGroupBox.Controls.Add(ModelPrefixGroupBox);
+
+					ItemBindGroupBox = new GroupBox()
+					{
+						ForeColor = Color.White,
+						Text = "装备绑定",
+						Location = new Point(5, 410),
+						Size = new Size(260, 120)
+					};
+					ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "无", Location = new Point(20, 15), Size = new Size(50, 20) });
+					ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到左手", Location = new Point(20, 35), Size = new Size(200, 20) });
+					ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到右手", Location = new Point(20, 55), Size = new Size(200, 20) });
+					ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到左前臂", Location = new Point(20, 75), Size = new Size(200, 20) });
+					ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到盔甲", Location = new Point(20, 95), Size = new Size(200, 20) });
+
+					ModelGroupBox.Controls.Add(ItemBindGroupBox);
+
+					ModelGroupBox.Controls.Add(ModelsListBox);
+					ModelGroupBox.Controls.Add(ModelAdd);
+					ModelGroupBox.Controls.Add(ModelDelete);
+					ModelGroupBox.Controls.Add(ModelName);
+					ModelGroupBox.Controls.Add(labelTip);
+					ModelGroupBox.Controls.Add(ModelLocation);
+					Model.Controls.Add(ModelGroupBox);
+
+
+					OnItemTypeChange += p =>
+					{
+						if (ItemPage.SelectedItem.IsWeapon || ItemPage.SelectedItem.IsShield)
+						{
+							ItemBindGroupBox.Controls[0].Enabled = true;
+							for (int i = 1; i < 4; i++)
+								ItemBindGroupBox.Controls[i].Enabled = true;
+							ItemBindGroupBox.Controls[4].Enabled = false;
+						}
+						else if (ItemPage.SelectedItem.IsArmor)
+						{
+							ItemBindGroupBox.Controls[0].Enabled = true;
+							for (int i = 1; i < 4; i++)
+								ItemBindGroupBox.Controls[i].Enabled = false;
+							ItemBindGroupBox.Controls[4].Enabled = true;
+						}
+						else
+						{
+							for (int i = 0; i < 5; i++)
+								ItemBindGroupBox.Controls[i].Enabled = false;
+						}
+						var a = (int)((ItemPage.SelectedItem.Properties & 0xF00) >> 8);
+						if (a > 0 && a < 4)
+							(ItemBindGroupBox.Controls[a] as RadioButton).Checked = true;
+						else if (a == 0xF)
+							(ItemBindGroupBox.Controls[4] as RadioButton).Checked = true;
+						else
+							(ItemBindGroupBox.Controls[0] as RadioButton).Checked = true;
+					};
 				}
-				ModelPrefixGroupBox.Controls.Add(ModelPrefixListBox);
-				ModelGroupBox.Controls.Add(ModelPrefixGroupBox);
+				#endregion
 
-				ItemBindGroupBox = new GroupBox()
+
+				#region Action
 				{
-					ForeColor = Color.White,
-					Text = "装备绑定",
-					Location = new Point(5, 410),
-					Size = new Size(260, 120)
-				};
-				ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "无", Location = new Point(20, 15), Size = new Size(50, 20) });
-				ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到左手", Location = new Point(20, 35), Size = new Size(200, 20) });
-				ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到右手", Location = new Point(20, 55), Size = new Size(200, 20) });
-				ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到左前臂", Location = new Point(20, 75), Size = new Size(200, 20) });
-				ItemBindGroupBox.Controls.Add(new RadioButton() { Text = "强制绑定到盔甲", Location = new Point(20, 95), Size = new Size(200, 20) });
-
-				ModelGroupBox.Controls.Add(ItemBindGroupBox);
-
-				ModelGroupBox.Controls.Add(ModelsListBox);
-				ModelGroupBox.Controls.Add(ModelAdd);
-				ModelGroupBox.Controls.Add(ModelDelete);
-				ModelGroupBox.Controls.Add(ModelName);
-				ModelGroupBox.Controls.Add(labelTip);
-				ModelGroupBox.Controls.Add(ModelLocation);
-				Model.Controls.Add(ModelGroupBox);
-
-
-				OnItemTypeChange += p => 
-				{
-					if (ItemPage.SelectedItem.IsWeapon || ItemPage.SelectedItem.IsShield)
+					GroupBox ActionGroupBox = new GroupBox()
 					{
-						ItemBindGroupBox.Controls[0].Enabled = true;
-						for (int i = 1; i < 4; i++)
-							ItemBindGroupBox.Controls[i].Enabled = true;
-						ItemBindGroupBox.Controls[4].Enabled = false;
-					}
-					else if (ItemPage.SelectedItem.IsArmor)
+						ForeColor = Color.White,
+						Text = "行为",
+						Location = new Point(290, 5),
+						Size = new Size(270, 540)
+					};
+					/*for (int i = 0; i < Item.ItemCombinedCapabilities.Count; i++)
 					{
-						ItemBindGroupBox.Controls[0].Enabled = true;
-						for (int i = 1; i < 4; i++)
-							ItemBindGroupBox.Controls[i].Enabled = false;
-						ItemBindGroupBox.Controls[4].Enabled = true;
-					}
-					else
-					{
-						for (int i = 0; i < 5; i++)
-							ItemBindGroupBox.Controls[i].Enabled = false;
-					}
-					var a = (int)((ItemPage.SelectedItem.Properties & 0xF00) >> 8);
-					if (a > 0 && a < 4)
-						(ItemBindGroupBox.Controls[a] as RadioButton).Checked = true;
-					else if (a == 0xF)
-						(ItemBindGroupBox.Controls[4] as RadioButton).Checked = true;
-					else
-						(ItemBindGroupBox.Controls[0] as RadioButton).Checked = true;
-				};
+						RadioButton r = new RadioButton()
+						{
+							Text = Item.ItemCombinedCapabilities.ElementAt(i).Key,
+							Location = new Point(5, 20 + i * 20),
+							Size = new Size(100, 20)
+						};
+						ActionGroupBox.Controls.Add(r);
+					}*/
+
+
+					Model.Controls.Add(ActionGroupBox);
+				}
+				#endregion
 			}
 			#endregion
 
@@ -928,7 +994,7 @@ namespace ModuleEditor.Controls
 				l <<= i;
 				ModelPrefixListBox.SetItemChecked(i, (Mesh.Value & l) == l);
 			}
-			
+
 		}
 
 		private void UpdateModels()

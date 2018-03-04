@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiBlinkListView.cs">
+    <Compile Include="Controls\AntiBlinkListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DamageLabelTextBox.cs">
