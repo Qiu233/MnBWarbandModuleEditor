@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ModuleEditor.Entities
+namespace ModuleUnserializer.Entities
 {
 	/// <summary>
 	/// 指出指令参数的类型

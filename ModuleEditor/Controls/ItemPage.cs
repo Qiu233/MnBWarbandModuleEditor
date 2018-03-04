@@ -1,4 +1,4 @@
-﻿using ModuleEditor.Files;
+﻿using ModuleUnserializer.Files;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +13,7 @@ namespace ModuleEditor.Controls
 		public SelectBox ItemSelectBox;
 		public ItemPropertiesTabControl PropertiesTabControl;
 		public event Action OnUpdate = () => { };
-		public Entities.Item SelectedItem
+		public ModuleUnserializer.Entities.Item SelectedItem
 		{
 			get;
 			private set;
@@ -53,7 +53,7 @@ namespace ModuleEditor.Controls
 		}
 		private void SetSelectedItem()
 		{
-			SelectedItem = (Entities.Item)MainForm.Module.F_Items.Items[ItemSelectBox.ListView.SelectedIndices[0]].Clone();
+			SelectedItem = (ModuleUnserializer.Entities.Item)MainForm.Module.F_Items.Items[ItemSelectBox.ListView.SelectedIndices[0]].Clone();
 			PropertiesTabControl.UpdateItem();
 		}
 

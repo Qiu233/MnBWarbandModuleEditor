@@ -1,11 +1,11 @@
-﻿using ModuleEditor.Files;
+﻿using ModuleUnserializer.Files;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 
-namespace ModuleEditor.Entities
+namespace ModuleUnserializer.Entities
 {
 	/// <summary>
 	/// Item的Capabilities属性备选，用于指出物品的能力

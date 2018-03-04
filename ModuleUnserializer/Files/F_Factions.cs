@@ -1,11 +1,11 @@
-﻿using ModuleEditor.Entities;
+﻿using ModuleUnserializer.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace ModuleEditor.Files
+namespace ModuleUnserializer.Files
 {
 	public class F_Factions
 	{

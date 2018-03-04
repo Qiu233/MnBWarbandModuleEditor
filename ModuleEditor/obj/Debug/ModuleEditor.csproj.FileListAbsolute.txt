@@ -7,3 +7,5 @@ D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.csproj.CoreCompi
 D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.exe
 D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.pdb
 D:\C\MnBWarbandModuleEditor\ModuleEditor\obj\Debug\ModuleEditor.csprojResolveAssemblyReference.cache
+D:\C\MnBWarbandModuleEditor\ModuleEditor\bin\Debug\ModuleUnserializer.dll
+D:\C\MnBWarbandModuleEditor\ModuleEditor\bin\Debug\ModuleUnserializer.pdb

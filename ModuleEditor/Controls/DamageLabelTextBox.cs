@@ -1,4 +1,4 @@
-﻿using ModuleEditor.Entities;
+﻿using ModuleUnserializer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

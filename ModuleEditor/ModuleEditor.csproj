@@ -74,16 +74,6 @@
     <Compile Include="Controls\LabelTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Entities\Faction.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\SimpleTrigger.cs" />
-    <Compile Include="Entities\Statement.cs" />
-    <Compile Include="Entities\StatementBlock.cs" />
-    <Compile Include="Files\F_Factions.cs" />
-    <Compile Include="Files\F_Items.cs" />
-    <Compile Include="Files\F_Language.cs" />
-    <Compile Include="Files\F_SimpleTriggers.cs" />
-    <Compile Include="Files\ModuleInfo.cs" />
     <Compile Include="INI.cs" />
     <Compile Include="Controls\ItemPage.cs">
       <SubType>Component</SubType>
@@ -137,6 +127,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuleUnserializer\ModuleUnserializer.csproj">
+      <Project>{21e1ee4d-f3e2-4dfd-b3d4-7a52ab1f831f}</Project>
+      <Name>ModuleUnserializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

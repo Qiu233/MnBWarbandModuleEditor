@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleEditor", "ModuleEditor\ModuleEditor.csproj", "{5527E214-895D-4EEC-AF5A-ADFC5FBE643F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleUnserializer", "ModuleUnserializer\ModuleUnserializer.csproj", "{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5527E214-895D-4EEC-AF5A-ADFC5FBE643F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5527E214-895D-4EEC-AF5A-ADFC5FBE643F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5527E214-895D-4EEC-AF5A-ADFC5FBE643F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E1EE4D-F3E2-4DFD-B3D4-7A52AB1F831F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

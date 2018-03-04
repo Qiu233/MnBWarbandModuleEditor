@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using ModuleEditor.Entities;
+using ModuleUnserializer.Entities;
 
-namespace ModuleEditor.Files
+namespace ModuleUnserializer.Files
 {
 	
 	public class F_SimpleTriggers

@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Numerics;
-using ModuleEditor.Entities;
+using ModuleUnserializer.Entities;
 
-namespace ModuleEditor.Files
+namespace ModuleUnserializer.Files
 {
 	/// <summary>
 	/// 骑砍中保存一个物品的属性采用以下结构：
