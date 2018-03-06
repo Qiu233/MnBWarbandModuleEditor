@@ -9,7 +9,7 @@ namespace ModuleUnserializer.Entities
 	/// 指出指令参数的类型
 	/// 表来自模组"Native"的源码
 	/// </summary>
-	public enum ParamType : int
+	public enum ParamType : uint
 	{
 		Register = 1,
 		Variable = 2,
@@ -36,7 +36,7 @@ namespace ModuleUnserializer.Entities
 		Track = 23,
 		Tableau = 24,
 		Animation = 25,
-		End = 26,
+		End = 26
 	}
 
 	/// <summary>
@@ -123,9 +123,19 @@ namespace ModuleUnserializer.Entities
 		public string Decompile()
 		{
 			StringBuilder result = new StringBuilder();
-			result.Append("(" + Opcode.ToString() + ",");
+			result.Append("(");
+			if (Enum.IsDefined(typeof(Operations), (long)Opcode))
+				result.Append(Opcode.ToString());
+			else if ((Opcode & Operations.neg) == Operations.neg)
+				result.Append(Operations.neg.ToString() + "|" + (~((~Opcode) | Operations.neg)).ToString());
+			else if ((Opcode & Operations.this_or_next) == Operations.this_or_next)
+			{
+				result.Append(Operations.this_or_next.ToString() + "|" + (~((~Opcode) | Operations.this_or_next)).ToString());
+			}
+			else
+				Console.WriteLine("警告：有未知的指令码出现");
 			foreach (var param in Params)
-				result.Append(param.Decompile() + ",");
+				result.Append("," + param.Decompile());
 			result.Append(")");
 			return result.ToString();
 		}
