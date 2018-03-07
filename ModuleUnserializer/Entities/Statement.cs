@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModuleUnserializer.Files;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -77,15 +78,17 @@ namespace ModuleUnserializer.Entities
 	/// </summary>
 	public class Param
 	{
+		public ModuleInfo Module;
 		public ParamType Type;
 		public long Value;
 		private Param()
 		{
 
 		}
-		public static Param FromString(string s)
+		public static Param FromString(ModuleInfo mInfo, string s)
 		{
 			Param p = new Param();
+			p.Module = mInfo;
 			long l = Convert.ToInt64(s);
 			long tag = l >> 56;
 			if ((tag | 0x00) != 0)
@@ -104,7 +107,10 @@ namespace ModuleUnserializer.Entities
 		public string Decompile()
 		{
 			StringBuilder result = new StringBuilder();
-			result.Append(Value.ToString());
+			if (Type == ParamType.Quick_String)
+				result.Append(("\"@" + Module.F_QuickStrings.QuickStrings[(int)Value].ValueEn + "\"").Replace('_', ' '));
+			else
+				result.Append(Value.ToString());
 			return result.ToString();
 		}
 	}
@@ -120,6 +126,7 @@ namespace ModuleUnserializer.Entities
 	/// </summary>
 	public class Statement
 	{
+		public ModuleInfo Module;
 		public Operations Opcode;
 		public List<Param> Params;
 		private Statement()
@@ -132,15 +139,17 @@ namespace ModuleUnserializer.Entities
 		/// <param name="s"></param>
 		/// <param name="j"></param>
 		/// <returns></returns>
-		public static Statement FromString(string[] s, ref int j)
+		public static Statement FromString(ModuleInfo mInfo, string[] s, ref int j)
 		{
 			Statement stmt = new Statement();
+			stmt.Module = mInfo;
 			stmt.Opcode = (Operations)Convert.ToInt64(s[j++]);
 			int m = Convert.ToInt32(s[j++]);
 			stmt.Params = new List<Param>(m);
 			for (int i = 0; i < m; i++)
 			{
-				stmt.Params.Add(Param.FromString(s[j++]));
+				var t = Param.FromString(mInfo, s[j++]);
+				stmt.Params.Add(t);
 			}
 			return stmt;
 		}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModuleUnserializer.Files;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ namespace ModuleUnserializer.Entities
 {
 	public class Faction
 	{
+		public ModuleInfo Module;
 		public string Index;
 		public string NameEn;
 		public string Name;
@@ -18,9 +20,10 @@ namespace ModuleUnserializer.Entities
 		{
 
 		}
-		public static Faction FromString(Dictionary<string, string> factionNames, string[] s, ref int j, int numberOfFactions)
+		public static Faction FromString(ModuleInfo mInfo, Dictionary<string, string> factionNames, string[] s, ref int j, int numberOfFactions)
 		{
 			Faction faction = new Faction();
+			faction.Module = mInfo;
 			faction.Relations = new List<float>();
 			faction.Ranks = new List<string>();
 			faction.Index = s[j++];

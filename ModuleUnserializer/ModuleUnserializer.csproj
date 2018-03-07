@@ -43,13 +43,15 @@
   <ItemGroup>
     <Compile Include="Entities\Faction.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\QuickString.cs" />
     <Compile Include="Entities\Script.cs" />
     <Compile Include="Entities\SimpleTrigger.cs" />
     <Compile Include="Entities\Statement.cs" />
-    <Compile Include="Entities\StatementBlock.cs" />
+    <Compile Include="Entities\Statement_Block.cs" />
     <Compile Include="Files\F_Factions.cs" />
     <Compile Include="Files\F_Items.cs" />
     <Compile Include="Files\F_Language.cs" />
+    <Compile Include="Files\F_QuickStrings.cs" />
     <Compile Include="Files\F_Scripts.cs" />
     <Compile Include="Files\F_SimpleTriggers.cs" />
     <Compile Include="Files\ModuleInfo.cs" />

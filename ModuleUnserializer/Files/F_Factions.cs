@@ -35,7 +35,7 @@ namespace ModuleUnserializer.Files
 			int j = 0;
 			for (int i = 0; i < Factions.Capacity; i++)
 			{
-				var faction = Faction.FromString(factionNames, s, ref j, Factions.Capacity);
+				var faction = Faction.FromString(Module,factionNames, s, ref j, Factions.Capacity);
 				Factions.Add(faction);
 			}
 		}

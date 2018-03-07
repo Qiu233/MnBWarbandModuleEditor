@@ -329,6 +329,7 @@ namespace ModuleUnserializer.Entities
 				"two_day_old", "smelling", "rotten",
 				"large_bag", };
 
+		public ModuleInfo Module;
 		public string Index;
 		public string NameEn;
 		public string Name;
@@ -424,6 +425,7 @@ namespace ModuleUnserializer.Entities
 		{
 			Dictionary<string, string> itemNames = minfo.F_Language["item_kinds"];
 			Item item = new Item();
+			item.Module = minfo;
 			item.Index = s[j++];
 			item.NameEn = s[j++];
 			item.Name = item.NameEn;
@@ -461,7 +463,7 @@ namespace ModuleUnserializer.Entities
 				item.Factions.Add(minfo.F_Factions.Factions[Convert.ToInt32(s[j++])]);
 			item.SimpleTriggers = new List<SimpleTrigger>(Convert.ToInt32(s[j++]));
 			for (int i = 0; i < item.SimpleTriggers.Capacity; i++)
-				item.SimpleTriggers.Add(SimpleTrigger.FromString(s, ref j));
+				item.SimpleTriggers.Add(SimpleTrigger.FromString(minfo, s, ref j));
 			return item;
 		}
 

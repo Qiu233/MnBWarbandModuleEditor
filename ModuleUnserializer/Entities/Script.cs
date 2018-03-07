@@ -8,17 +8,18 @@ namespace ModuleUnserializer.Entities
 {
 	public class Script
 	{
+		public ModuleInfo Module;
 		public string Name;
 		public int v;
 		public Statement_Block Statements;
 		public static Script FromString(ModuleInfo minfo, string[] s, ref int j)
 		{
 			Script script = new Script();
-
+			script.Module = minfo;
 			script.Name = s[j++];
 			script.v = Convert.ToInt32(s[j++]);
 
-			script.Statements = Statement_Block.FromString(s, ref j);
+			script.Statements = Statement_Block.FromString(minfo, s, ref j);
 
 			return script;
 		}

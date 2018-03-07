@@ -37,7 +37,8 @@ namespace ModuleUnserializer.Files
 				var s = reader.ReadLine();
 				if (s.Trim() == "") continue;
 				int j = 0;
-				SimpleTriggers.Add(SimpleTrigger.FromString(s.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries), ref j));
+				var st = SimpleTrigger.FromString(Module,s.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries), ref j);
+				SimpleTriggers.Add(st);
 				i++;
 			}
 		}
