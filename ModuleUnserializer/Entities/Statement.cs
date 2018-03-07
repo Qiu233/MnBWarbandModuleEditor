@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -11,30 +12,59 @@ namespace ModuleUnserializer.Entities
 	/// </summary>
 	public enum ParamType : uint
 	{
+		[Description("reg")]
 		Register = 1,
+		[Description("$")]
 		Variable = 2,
+		[Description("str_")]
 		String = 3,
+		[Description("itm_")]
 		Item = 4,
+		[Description("trp_")]
 		Troop = 5,
+		[Description("fac_")]
 		Faction = 6,
+		[Description("qst_")]
 		Quest = 7,
+		[Description("pt_")]
 		Party_Tpl = 8,
+		[Description("p_")]
 		Party = 9,
+		[Description("scn_")]
 		Scene = 10,
+		[Description("mt_")]
 		Mission_Tpl = 11,
+		[Description("mnu_")]
 		Menu = 12,
+		[Description("script_")]
 		Script = 13,
+		[Description("psys_")]
 		Particle_Sys = 14,
+		[Description("spr_")]
 		Scene_Prop = 15,
+		[Description("snd_")]
 		Sound = 16,
+
+		[Description(":")]
 		Local_Variable = 17,
+
+		[Description("icon_")]
 		Map_Icon = 18,
+		[Description("skl_")]
 		Skill = 19,
+		[Description("mesh_")]
 		Mesh = 20,
+		[Description("prsnt_")]
 		Presentation = 21,
+
+		[Description("@")]
 		Quick_String = 22,
+
+		[Description("track_")]
 		Track = 23,
+		[Description("tableau_")]
 		Tableau = 24,
+		[Description("snim_")]
 		Animation = 25,
 		End = 26
 	}
@@ -62,13 +92,11 @@ namespace ModuleUnserializer.Entities
 			{
 				p.Type = (ParamType)tag;
 			}
-			else
-			{
-				long a = 0xFF_FFFF_FFFF_FFFF;
-				p.Value = a & l;
-			}
+			long a = 0xFF_FFFF_FFFF_FFFF;
+			p.Value = a & l;
 			return p;
 		}
+
 		/// <summary>
 		/// 未完成
 		/// </summary>
@@ -76,7 +104,7 @@ namespace ModuleUnserializer.Entities
 		public string Decompile()
 		{
 			StringBuilder result = new StringBuilder();
-			result.Append(Type.ToString());
+			result.Append(Value.ToString());
 			return result.ToString();
 		}
 	}
@@ -129,9 +157,7 @@ namespace ModuleUnserializer.Entities
 			else if ((Opcode & Operations.neg) == Operations.neg)
 				result.Append(Operations.neg.ToString() + "|" + (~((~Opcode) | Operations.neg)).ToString());
 			else if ((Opcode & Operations.this_or_next) == Operations.this_or_next)
-			{
 				result.Append(Operations.this_or_next.ToString() + "|" + (~((~Opcode) | Operations.this_or_next)).ToString());
-			}
 			else
 				Console.WriteLine("警告：有未知的指令码出现");
 			foreach (var param in Params)
