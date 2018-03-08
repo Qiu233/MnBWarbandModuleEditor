@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace ModuleUnserializer.Entities
@@ -13,6 +14,8 @@ namespace ModuleUnserializer.Entities
 	/// </summary>
 	public enum ParamType : uint
 	{
+		[Description("")]
+		Number = 0,
 		[Description("reg")]
 		Register = 1,
 		[Description("$")]
@@ -80,7 +83,7 @@ namespace ModuleUnserializer.Entities
 	{
 		public ModuleInfo Module;
 		public ParamType Type;
-		public long Value;
+		public BigInteger Value;
 		private Param()
 		{
 
@@ -93,10 +96,20 @@ namespace ModuleUnserializer.Entities
 			long tag = l >> 56;
 			if ((tag | 0x00) != 0)
 			{
-				p.Type = (ParamType)tag;
+				if (Enum.IsDefined(typeof(ParamType), (ParamType)tag))
+				{
+					p.Type = (ParamType)tag;
+					long a = 0xFF_FFFF_FFFF_FFFF;
+					p.Value = a & l;
+				}
+				else
+				{
+					p.Type = 0;
+					p.Value = l;
+				}
 			}
-			long a = 0xFF_FFFF_FFFF_FFFF;
-			p.Value = a & l;
+
+
 			return p;
 		}
 
@@ -107,10 +120,22 @@ namespace ModuleUnserializer.Entities
 		public string Decompile()
 		{
 			StringBuilder result = new StringBuilder();
-			if (Type == ParamType.Quick_String)
+			if (Type == 0)
+				result.Append(Value);
+			else if (Type == ParamType.Quick_String)
 				result.Append(("\"@" + Module.F_QuickStrings.QuickStrings[(int)Value].ValueEn + "\"").Replace('_', ' '));
+			else if (Type == ParamType.Local_Variable)
+				result.Append("\":local_" + Value + "\"");
+			else if (Type == ParamType.Variable)
+				result.Append("\"$" + Module.F_Variables.Variables[(int)Value] + "\"");
+			else if (Type == ParamType.Register)
+				result.Append("reg" + Value + "");
+			else if (Type == ParamType.Faction)
+				result.Append("\"" + Module.F_Factions.Factions[(int)Value].Index + "\"");
+			else if (Type == ParamType.Script)
+				result.Append("\"script_" + Module.F_Scripts.Scripts[(int)Value].Name + "\"");
 			else
-				result.Append(Value.ToString());
+				result.Append(Type.ToString());
 			return result.ToString();
 		}
 	}
@@ -157,7 +182,7 @@ namespace ModuleUnserializer.Entities
 		/// 未完成
 		/// </summary>
 		/// <returns></returns>
-		public string Decompile()
+		public string Decompile(ref int j)
 		{
 			StringBuilder result = new StringBuilder();
 			result.Append("(");
@@ -169,6 +194,27 @@ namespace ModuleUnserializer.Entities
 				result.Append(Operations.this_or_next.ToString() + "|" + (~((~Opcode) | Operations.this_or_next)).ToString());
 			else
 				Console.WriteLine("警告：有未知的指令码出现");
+			switch (Opcode)
+			{
+				case Operations.try_begin:
+				case Operations.try_for_range:
+				case Operations.try_for_agents:
+				case Operations.try_for_parties:
+				case Operations.try_for_players:
+				case Operations.try_for_prop_instances:
+				case Operations.try_for_range_backwards:
+					j = 4;
+					break;
+				case Operations.else_try:
+					j = 2 | 4;
+					break;
+				case Operations.try_end:
+					j = 2;
+					break;
+				default:
+					j = 0;
+					break;
+			}
 			foreach (var param in Params)
 				result.Append("," + param.Decompile());
 			result.Append(")");

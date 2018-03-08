@@ -10,6 +10,7 @@ namespace ModuleUnserializer.Files
 		public F_Language F_Language;
 
 
+		public F_Variables F_Variables;
 		public F_QuickStrings F_QuickStrings;
 		public F_Factions F_Factions;
 		public F_Items F_Items;
@@ -18,6 +19,7 @@ namespace ModuleUnserializer.Files
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
+			F_Variables = F_Variables.LoadFromFile(this, MnBPath, module);
 			F_QuickStrings = F_QuickStrings.LoadFromFile(this, MnBPath, module);
 			F_Factions = F_Factions.LoadFromFile(this, MnBPath, module);
 			F_Items = F_Items.LoadFromFile(this, MnBPath, module);

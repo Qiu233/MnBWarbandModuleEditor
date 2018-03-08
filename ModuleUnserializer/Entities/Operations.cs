@@ -7,10 +7,8 @@ namespace ModuleUnserializer.Entities
 	public enum Operations : long
 	{
 		call_script = 1,
-		end_try = 3,
 		try_end = 3,
 		try_begin = 4,
-		else_try_begin = 5,
 		else_try = 5,
 		try_for_range = 6,
 		try_for_range_backwards = 7,

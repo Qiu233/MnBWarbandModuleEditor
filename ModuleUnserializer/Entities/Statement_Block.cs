@@ -34,9 +34,24 @@ namespace ModuleUnserializer.Entities
 		{
 			StringBuilder result = new StringBuilder();
 			result.Append("[\n");
+			int layer = 0;
 			foreach (var stmt in Statements)
 			{
-				result.Append(stmt.Decompile() + ",\n");
+				int t = 0;
+				string s = stmt.Decompile(ref t);
+				if ((t & 1) == 1)
+					layer += 1;
+				else if ((t & 2) == 2)
+					layer -= 1;
+
+				for (int i = 0; i < layer; i++)
+					result.Append("\t");
+
+				if ((t & 4) == 4)
+					layer += 1;
+				else if ((t & 8) == 8)
+					layer -= 1;
+				result.Append(s + ",\n");
 			}
 			result.Append("]");
 			return result.ToString();

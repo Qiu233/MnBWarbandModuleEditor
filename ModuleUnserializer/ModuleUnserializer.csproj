@@ -54,6 +54,7 @@
     <Compile Include="Files\F_QuickStrings.cs" />
     <Compile Include="Files\F_Scripts.cs" />
     <Compile Include="Files\F_SimpleTriggers.cs" />
+    <Compile Include="Files\F_Variables.cs" />
     <Compile Include="Files\ModuleInfo.cs" />
     <Compile Include="Entities\Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
