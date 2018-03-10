@@ -12,14 +12,14 @@ namespace ModuleUnserializer.Entities
 		public string ValueEn;
 		public string Value;
 
-		public static QuickString FromString(ModuleInfo mInfo,Dictionary<string, string> qs, string[] s, ref int j)
+		public static QuickString FromString(ModuleInfo mInfo, string[] s, ref int j)
 		{
 			QuickString p = new QuickString();
 			p.Module = mInfo;
 			string id = s[j++];
 			p.ValueEn = s[j++];
-			if (qs.ContainsKey(id))
-				p.Value = qs[id];
+			if (mInfo.F_Language["quick_strings"].ContainsKey(id))
+				p.Value = mInfo.F_Language["quick_strings"][id];
 			return p;
 		}
 	}

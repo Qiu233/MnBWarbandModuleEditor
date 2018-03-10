@@ -20,7 +20,7 @@ namespace ModuleUnserializer.Entities
 		{
 
 		}
-		public static Faction FromString(ModuleInfo mInfo, Dictionary<string, string> factionNames, string[] s, ref int j, int numberOfFactions)
+		public static Faction FromString(ModuleInfo mInfo, string[] s, ref int j, int numberOfFactions)
 		{
 			Faction faction = new Faction();
 			faction.Module = mInfo;
@@ -29,8 +29,8 @@ namespace ModuleUnserializer.Entities
 			faction.Index = s[j++];
 			faction.NameEn = s[j++];
 			faction.Name = faction.NameEn;
-			if (factionNames.ContainsKey(faction.Index))
-				faction.Name = factionNames[faction.Index];
+			if (mInfo.F_Language["factions"].ContainsKey(faction.Index))
+				faction.Name = mInfo.F_Language["factions"][faction.Index];
 			faction.Flags = Convert.ToInt32(s[j++]);
 			faction.Color = Convert.ToInt32(s[j++]);
 			for (int i = 0; i < numberOfFactions; i++)

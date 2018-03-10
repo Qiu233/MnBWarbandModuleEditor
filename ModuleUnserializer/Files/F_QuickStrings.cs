@@ -28,13 +28,12 @@ namespace ModuleUnserializer.Files
 		}
 		private void FromStream(StreamReader reader)
 		{
-			Dictionary<string, string> quick_strings = Module.F_Language["quick_strings"];
 			QuickStrings = new List<QuickString>(Convert.ToInt32(reader.ReadLine()));
 			string[] s = reader.ReadToEnd().Split(new string[] { " ", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
 			int j = 0;
 			for (int i = 0; i < QuickStrings.Capacity; i++)
 			{
-				var qs = QuickString.FromString(Module, quick_strings, s, ref j);
+				var qs = QuickString.FromString(Module, s, ref j);
 				QuickStrings.Add(qs);
 			}
 		}

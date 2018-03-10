@@ -134,6 +134,8 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"" + Module.F_Factions.Factions[(int)Value].Index + "\"");
 			else if (Type == ParamType.Script)
 				result.Append("\"script_" + Module.F_Scripts.Scripts[(int)Value].Name + "\"");
+			else if (Type == ParamType.Party)
+				result.Append("\"" + Module.F_Parties.Parties[(int)Value].Iden + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

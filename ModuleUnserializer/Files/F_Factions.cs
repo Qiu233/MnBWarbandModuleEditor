@@ -27,7 +27,6 @@ namespace ModuleUnserializer.Files
 		}
 		private void FromStream(StreamReader reader)
 		{
-			Dictionary<string, string> factionNames = Module.F_Language["factions"];
 			if (reader.ReadLine() != "factionsfile version 1")
 				throw new Exception("可能不支持当前mod或该mod已损坏");
 			Factions = new List<Faction>(Convert.ToInt32(reader.ReadLine()));
@@ -35,7 +34,7 @@ namespace ModuleUnserializer.Files
 			int j = 0;
 			for (int i = 0; i < Factions.Capacity; i++)
 			{
-				var faction = Faction.FromString(Module,factionNames, s, ref j, Factions.Capacity);
+				var faction = Faction.FromString(Module, s, ref j, Factions.Capacity);
 				Factions.Add(faction);
 			}
 		}
