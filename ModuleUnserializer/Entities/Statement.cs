@@ -68,7 +68,7 @@ namespace ModuleUnserializer.Entities
 		Track = 23,
 		[Description("tableau_")]
 		Tableau = 24,
-		[Description("snim_")]
+		[Description("anim_")]
 		Animation = 25,
 		End = 26
 	}
@@ -131,11 +131,13 @@ namespace ModuleUnserializer.Entities
 			else if (Type == ParamType.Register)
 				result.Append("reg" + Value + "");
 			else if (Type == ParamType.Faction)
-				result.Append("\"" + Module.F_Factions.Factions[(int)Value].Index + "\"");
+				result.Append("\"fac_" + Module.F_Factions.Factions[(int)Value].Index + "\"");
 			else if (Type == ParamType.Script)
 				result.Append("\"script_" + Module.F_Scripts.Scripts[(int)Value].Name + "\"");
 			else if (Type == ParamType.Party)
-				result.Append("\"" + Module.F_Parties.Parties[(int)Value].Iden + "\"");
+				result.Append("\"p_" + Module.F_Parties.Parties[(int)Value].Iden + "\"");
+			else if (Type == ParamType.Menu)
+				result.Append("\"mnu_" + Module.F_Menus.Menus[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

@@ -27,6 +27,7 @@ namespace ModuleUnserializer.Entities
 			faction.Relations = new List<float>();
 			faction.Ranks = new List<string>();
 			faction.Index = s[j++];
+			faction.Index = faction.Index.Substring(faction.Index.IndexOf("_") + 1);
 			faction.NameEn = s[j++];
 			faction.Name = faction.NameEn;
 			if (mInfo.F_Language["factions"].ContainsKey(faction.Index))

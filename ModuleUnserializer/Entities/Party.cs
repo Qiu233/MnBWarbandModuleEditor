@@ -36,6 +36,7 @@ namespace ModuleUnserializer.Entities
 			party.Index = Convert.ToInt32(s[j++]);
 			j++;
 			party.Iden = s[j++];
+			party.Iden = party.Iden.Substring(party.Iden.IndexOf("_") + 1);
 			party.NameEn = s[j++];
 			if (mInfo.F_Language["parties"].ContainsKey(party.Iden))
 				party.Name = mInfo.F_Language["parties"][party.Iden];

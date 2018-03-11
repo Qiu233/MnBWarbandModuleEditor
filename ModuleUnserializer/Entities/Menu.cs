@@ -52,6 +52,7 @@ namespace ModuleUnserializer.Entities
 			Menu party = new Menu();
 			party.Module = mInfo;
 			party.Index = s[j++];
+			party.Index = party.Index.Substring(party.Index.IndexOf("_") + 1);
 			party.Flags = BigInteger.Parse(s[j++]);
 			party.TextEn = s[j++];
 			if (mInfo.F_Language["game_menus"].ContainsKey(party.Index))
