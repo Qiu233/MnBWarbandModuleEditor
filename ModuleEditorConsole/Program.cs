@@ -34,6 +34,21 @@ namespace ModuleEditorConsole
 
 		}
 
+		private static void Decompile()
+		{
+			if (!Directory.Exists(".\\" + Module)) Directory.CreateDirectory(".\\" + Module);
+			foreach (var f in Directory.EnumerateFiles(".\\" + Module))
+				File.Delete(f);
+			var scriptFile = File.Open(".\\" + Module + "\\module_scripts.py", FileMode.OpenOrCreate);
+			StreamWriter sw = new StreamWriter(scriptFile);
+			StringBuilder s = new StringBuilder("script=[\n");
+			foreach (var m in ModuleInfo.F_Scripts.Scripts)
+				s.Append(m.Decompile() + "\n");
+			s.Append("]\n");
+			sw.Write(s);
+			sw.Close();
+		}
+
 		/// <summary>
 		/// 处理指令
 		/// </summary>
@@ -45,6 +60,9 @@ namespace ModuleEditorConsole
 			string opCode = cmd[0].ToLower();
 			switch (opCode)
 			{
+				case "decompile":
+					Decompile();
+					break;
 				case "quit":
 				case "exit":
 				case "close":

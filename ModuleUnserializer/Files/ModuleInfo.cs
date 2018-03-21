@@ -9,7 +9,7 @@ namespace ModuleUnserializer.Files
 	{
 		public F_Language F_Language;
 
-
+		public F_Strings F_Strings;
 		public F_Menus F_Menus;
 		public F_Variables F_Variables;
 		public F_QuickStrings F_QuickStrings;
@@ -21,6 +21,7 @@ namespace ModuleUnserializer.Files
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
+			F_Strings = F_Strings.LoadFromFile(this, MnBPath, module);
 			F_Variables = F_Variables.LoadFromFile(this, MnBPath, module);
 			F_QuickStrings = F_QuickStrings.LoadFromFile(this, MnBPath, module);
 			F_Factions = F_Factions.LoadFromFile(this, MnBPath, module);
@@ -30,7 +31,7 @@ namespace ModuleUnserializer.Files
 
 			F_Items = F_Items.LoadFromFile(this, MnBPath, module);
 			F_Menus = F_Menus.LoadFromFile(this, MnBPath, module);
-			F_Parties= F_Parties.LoadFromFile(this, MnBPath, module);
+			F_Parties = F_Parties.LoadFromFile(this, MnBPath, module);
 		}
 	}
 }

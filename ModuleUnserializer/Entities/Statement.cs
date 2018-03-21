@@ -138,6 +138,8 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"p_" + Module.F_Parties.Parties[(int)Value].Iden + "\"");
 			else if (Type == ParamType.Menu)
 				result.Append("\"mnu_" + Module.F_Menus.Menus[(int)Value].Index + "\"");
+			else if (Type == ParamType.String)
+				result.Append("\"str_" + Module.F_Strings.Strings[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();
