@@ -140,6 +140,8 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"mnu_" + Module.F_Menus.Menus[(int)Value].Index + "\"");
 			else if (Type == ParamType.String)
 				result.Append("\"str_" + Module.F_Strings.Strings[(int)Value].Index + "\"");
+			else if (Type == ParamType.Troop)
+				result.Append("\"trp_" + Module.F_Troops.Troops[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

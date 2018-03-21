@@ -18,6 +18,7 @@ namespace ModuleUnserializer.Files
 		public F_SimpleTriggers F_SimpleTriggers;
 		public F_Scripts F_Scripts;
 		public F_Parties F_Parties;
+		public F_Troops F_Troops;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
@@ -32,6 +33,7 @@ namespace ModuleUnserializer.Files
 			F_Items = F_Items.LoadFromFile(this, MnBPath, module);
 			F_Menus = F_Menus.LoadFromFile(this, MnBPath, module);
 			F_Parties = F_Parties.LoadFromFile(this, MnBPath, module);
+			F_Troops = F_Troops.LoadFromFile(this, MnBPath, module);
 		}
 	}
 }
