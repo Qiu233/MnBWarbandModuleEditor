@@ -142,6 +142,10 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"str_" + Module.F_Strings.Strings[(int)Value].Index + "\"");
 			else if (Type == ParamType.Troop)
 				result.Append("\"trp_" + Module.F_Troops.Troops[(int)Value].Index + "\"");
+			else if (Type == ParamType.Sound)
+				result.Append("\"snd_" + Module.F_Sounds.Sounds[(int)Value].Index + "\"");
+			else if (Type == ParamType.Quest)
+				result.Append("\"qst_" + Module.F_Quests.Quests[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

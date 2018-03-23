@@ -45,9 +45,12 @@
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Party.cs" />
+    <Compile Include="Entities\Quest.cs" />
     <Compile Include="Entities\QuickString.cs" />
     <Compile Include="Entities\Script.cs" />
     <Compile Include="Entities\SimpleTrigger.cs" />
+    <Compile Include="Entities\Sound.cs" />
+    <Compile Include="Entities\SoundSample.cs" />
     <Compile Include="Entities\Statement.cs" />
     <Compile Include="Entities\Statement_Block.cs" />
     <Compile Include="Entities\MnBString.cs" />
@@ -57,9 +60,11 @@
     <Compile Include="Files\F_Language.cs" />
     <Compile Include="Files\F_Menus.cs" />
     <Compile Include="Files\F_Parties.cs" />
+    <Compile Include="Files\F_Quests.cs" />
     <Compile Include="Files\F_QuickStrings.cs" />
     <Compile Include="Files\F_Scripts.cs" />
     <Compile Include="Files\F_SimpleTriggers.cs" />
+    <Compile Include="Files\F_Sounds.cs" />
     <Compile Include="Files\F_Strings.cs" />
     <Compile Include="Files\F_Troops.cs" />
     <Compile Include="Files\F_Variables.cs" />

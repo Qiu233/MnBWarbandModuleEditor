@@ -34,8 +34,8 @@ namespace ModuleUnserializer.Files
 			int j = 0;
 			for (int i = 0; i < Troops.Capacity; i++)
 			{
-				var str = Troop.FromString(Module, s, ref j);
-				Troops.Add(str);
+				var trp = Troop.FromString(Module, s, ref j);
+				Troops.Add(trp);
 			}
 		}
 	}
