@@ -26,7 +26,7 @@ namespace ModuleUnserializer.Entities
 			qst.Index = qst.Index.Substring(qst.Index.IndexOf("_") + 1);
 			qst.Name = s[j++];
 			qst.Flags = BigInteger.Parse(s[j++]);
-			qst.Description = s[j++];
+			qst.Description = s[j++].Replace('_', ' ');
 
 			return qst;
 		}
