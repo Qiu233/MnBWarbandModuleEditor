@@ -150,6 +150,8 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"pt_" + Module.F_Party_Templates.Party_Templates[(int)Value].Index + "\"");
 			else if (Type == ParamType.Scene)
 				result.Append("\"scn_" + Module.F_Scenes.Scenes[(int)Value].Index + "\"");
+			else if (Type == ParamType.Mission_Tpl)
+				result.Append("\"mt_" + Module.F_Mission_Templates.Mission_Templates[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();
