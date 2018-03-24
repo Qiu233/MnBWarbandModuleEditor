@@ -22,6 +22,8 @@ namespace ModuleUnserializer.Files
 		public F_Sounds F_Sounds;
 		public F_Quests F_Quests;
 		public F_Party_Templates F_Party_Templates;
+		public F_Scenes F_Scenes;
+		public F_Mission_Templates F_Mission_Templates;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
@@ -40,6 +42,8 @@ namespace ModuleUnserializer.Files
 			F_Sounds = F_Sounds.LoadFromFile(this, MnBPath, module);
 			F_Quests = F_Quests.LoadFromFile(this, MnBPath, module);
 			F_Party_Templates = F_Party_Templates.LoadFromFile(this, MnBPath, module);
+			F_Scenes = F_Scenes.LoadFromFile(this, MnBPath, module);
+			F_Mission_Templates = F_Mission_Templates.LoadFromFile(this, MnBPath, module);
 		}
 	}
 }
