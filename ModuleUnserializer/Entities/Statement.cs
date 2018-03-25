@@ -152,6 +152,10 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"scn_" + Module.F_Scenes.Scenes[(int)Value].Index + "\"");
 			else if (Type == ParamType.Mission_Tpl)
 				result.Append("\"mt_" + Module.F_Mission_Templates.Mission_Templates[(int)Value].Index + "\"");
+			else if (Type == ParamType.Particle_Sys)
+				result.Append("\"psys_" + Module.F_Particle_Systems.Particle_Systems[(int)Value].Index + "\"");
+			else if (Type == ParamType.Scene_Prop)
+				result.Append("\"spr_" + Module.F_Scene_Props.Scene_Props[(int)Value].Index + "\"");
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

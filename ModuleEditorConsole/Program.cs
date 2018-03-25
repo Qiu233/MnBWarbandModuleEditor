@@ -21,7 +21,7 @@ namespace ModuleEditorConsole
 		{
 			ModuleCheck();
 			ModuleInfo = new ModuleInfo(MnBPath, Module, Language);
-			Console.WriteLine("Module已读入......");
+			Console.WriteLine("Module:\"" + Module + "\"已读入......");
 			OnCommand += Handler_OnCommand;
 			while (true)
 			{

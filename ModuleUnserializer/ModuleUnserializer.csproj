@@ -45,11 +45,13 @@
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Mission_Template.cs" />
+    <Compile Include="Entities\Particle_System.cs" />
     <Compile Include="Entities\Party.cs" />
     <Compile Include="Entities\Party_Template.cs" />
     <Compile Include="Entities\Quest.cs" />
     <Compile Include="Entities\QuickString.cs" />
     <Compile Include="Entities\Scene.cs" />
+    <Compile Include="Entities\Scene_Prop.cs" />
     <Compile Include="Entities\Script.cs" />
     <Compile Include="Entities\SimpleTrigger.cs" />
     <Compile Include="Entities\Sound.cs" />
@@ -63,11 +65,13 @@
     <Compile Include="Files\F_Language.cs" />
     <Compile Include="Files\F_Menus.cs" />
     <Compile Include="Files\F_Mission_Templates.cs" />
+    <Compile Include="Files\F_Particle_Systems.cs" />
     <Compile Include="Files\F_Parties.cs" />
     <Compile Include="Files\F_Party_Templates.cs" />
     <Compile Include="Files\F_Quests.cs" />
     <Compile Include="Files\F_QuickStrings.cs" />
     <Compile Include="Files\F_Scenes.cs" />
+    <Compile Include="Files\F_Scene_Props.cs" />
     <Compile Include="Files\F_Scripts.cs" />
     <Compile Include="Files\F_SimpleTriggers.cs" />
     <Compile Include="Files\F_Sounds.cs" />

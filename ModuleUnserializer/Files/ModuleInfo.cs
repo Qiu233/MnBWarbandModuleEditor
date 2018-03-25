@@ -24,6 +24,8 @@ namespace ModuleUnserializer.Files
 		public F_Party_Templates F_Party_Templates;
 		public F_Scenes F_Scenes;
 		public F_Mission_Templates F_Mission_Templates;
+		public F_Particle_Systems F_Particle_Systems;
+		public F_Scene_Props F_Scene_Props;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
@@ -44,6 +46,9 @@ namespace ModuleUnserializer.Files
 			F_Party_Templates = F_Party_Templates.LoadFromFile(this, MnBPath, module);
 			F_Scenes = F_Scenes.LoadFromFile(this, MnBPath, module);
 			F_Mission_Templates = F_Mission_Templates.LoadFromFile(this, MnBPath, module);
+			F_Particle_Systems = F_Particle_Systems.LoadFromFile(this, MnBPath, module);
+			F_Scene_Props = F_Scene_Props.LoadFromFile(this, MnBPath, module);
+
 		}
 	}
 }
