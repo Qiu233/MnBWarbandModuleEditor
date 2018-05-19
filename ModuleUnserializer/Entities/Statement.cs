@@ -160,6 +160,12 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"itm_" + Module.F_Items.Items[(int)Value].Index + "\"");
 			else if (Type == ParamType.Mesh)
 				result.Append("\"mesh_" + Module.F_Meshes.Meshes[(int)Value].Index + "\"");
+			else if (Type == ParamType.Tableau)
+				result.Append("\"tableau_" + Module.F_Tableau_Mats.Tableau_Mats[(int)Value].Index + "\"");
+			else if (Type == ParamType.Skill)
+				result.Append("\"skl_" + Module.F_Skills.Skills[(int)Value].Index + "\"");
+			else if (Type == ParamType.Presentation)
+				result.Append("\"prsnt_" + Module.F_Presentations.Presentations[(int)Value].Index + "\"");
 
 			else
 				result.Append(Type.ToString());
