@@ -210,10 +210,10 @@ namespace ModuleUnserializer.Entities
 			result.Append("(");
 			if (Enum.IsDefined(typeof(Operations), (long)Opcode))
 				result.Append(Opcode.ToString());
-			else if ((Opcode & Operations.neg) == Operations.neg)
-				result.Append(Operations.neg.ToString() + "|" + (~((~Opcode) | Operations.neg)).ToString());
 			else if ((Opcode & Operations.this_or_next) == Operations.this_or_next)
 				result.Append(Operations.this_or_next.ToString() + "|" + (~((~Opcode) | Operations.this_or_next)).ToString());
+			else if ((Opcode & Operations.neg) == Operations.neg)
+				result.Append(Operations.neg.ToString() + "|" + (~((~Opcode) | Operations.neg)).ToString());
 			else
 				Console.WriteLine("警告：有未知的指令码出现");
 			switch (Opcode)
