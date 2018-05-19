@@ -38,7 +38,7 @@ namespace ModuleUnserializer.Files
 				var smp = SoundSample.FromString(Module, s, ref j);
 				Samples.Add(smp);
 			}
-			Sounds = new List<Sound>(Convert.ToInt32(reader.ReadLine()));
+			Sounds = new List<Sound>(Convert.ToInt32(s[j++]));
 			for (int i = 0; i < Sounds.Capacity; i++)
 			{
 				var snd = Sound.FromString(Module, s, ref j);
