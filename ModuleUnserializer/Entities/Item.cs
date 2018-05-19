@@ -426,15 +426,16 @@ namespace ModuleUnserializer.Entities
 			Dictionary<string, string> itemNames = minfo.F_Language["item_kinds"];
 			Item item = new Item();
 			item.Module = minfo;
-			item.Index = s[j++];
+			string hi = item.Index = s[j++];
+			item.Index = item.Index.Substring(item.Index.IndexOf("_") + 1);
 			item.NameEn = s[j++];
 			item.Name = item.NameEn;
 			item.NamePL = item.Name;
 			j++;
-			if (itemNames.ContainsKey(item.Index) && itemNames.ContainsKey(item.Index + "_pl"))
+			if (itemNames.ContainsKey(hi) && itemNames.ContainsKey(hi + "_pl"))
 			{
-				item.Name = itemNames[item.Index];
-				item.NamePL = itemNames[item.Index + "_pl"];
+				item.Name = itemNames[hi];
+				item.NamePL = itemNames[hi + "_pl"];
 			}
 			item.Meshes = new List<KeyValuePair<string, BigInteger>>(Convert.ToInt32(s[j++]));
 			for (int i = 0; i < item.Meshes.Capacity; i++)

@@ -9,7 +9,7 @@ namespace ModuleUnserializer.Entities
 	public class Presentation
 	{
 		public string Index;
-		public int Flags;
+		public long Flags;
 		public int Background;
 		public List<SimpleTrigger> Triggers;
 		private Presentation()
@@ -21,7 +21,7 @@ namespace ModuleUnserializer.Entities
 			Presentation ps = new Presentation();
 			ps.Index = s[j++];
 			ps.Index = ps.Index.Substring(ps.Index.IndexOf("_") + 1);
-			ps.Flags = Convert.ToInt32(s[j++]);
+			ps.Flags = Convert.ToInt64(s[j++]);
 			ps.Background = Convert.ToInt32(s[j++]);
 			ps.Triggers = new List<SimpleTrigger>(Convert.ToInt32(s[j++]));
 			for (int i = 0; i < ps.Triggers.Capacity; i++)

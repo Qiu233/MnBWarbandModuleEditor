@@ -166,6 +166,10 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"skl_" + Module.F_Skills.Skills[(int)Value].Index + "\"");
 			else if (Type == ParamType.Presentation)
 				result.Append("\"prsnt_" + Module.F_Presentations.Presentations[(int)Value].Index + "\"");
+			else if (Type == ParamType.Map_Icon)
+				result.Append("\"icon_" + Module.F_MapIcons.MapIcons[(int)Value].Index + "\"");
+			else if (Type == ParamType.Animation)
+				result.Append("\"anim_" + Module.F_Animations.Actions[(int)Value].Index + "\"");
 
 			else
 				result.Append(Type.ToString());

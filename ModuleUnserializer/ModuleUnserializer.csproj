@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Action.cs" />
     <Compile Include="Entities\Faction.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\MapIcon.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Mesh.cs" />
     <Compile Include="Entities\Mission_Template.cs" />
@@ -64,9 +66,11 @@
     <Compile Include="Entities\MnBString.cs" />
     <Compile Include="Entities\Tableau.cs" />
     <Compile Include="Entities\Troop.cs" />
+    <Compile Include="Files\F_Animations.cs" />
     <Compile Include="Files\F_Factions.cs" />
     <Compile Include="Files\F_Items.cs" />
     <Compile Include="Files\F_Language.cs" />
+    <Compile Include="Files\F_MapIcons.cs" />
     <Compile Include="Files\F_Menus.cs" />
     <Compile Include="Files\F_Meshes.cs" />
     <Compile Include="Files\F_Mission_Templates.cs" />

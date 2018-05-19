@@ -10,7 +10,7 @@ namespace ModuleUnserializer.Entities
 	public class Mesh
 	{
 		public string Index;
-		public int Flags;
+		public long Flags;
 		public string ResourceName;
 		public float TranslationX;
 		public float TranslationY;
@@ -33,7 +33,7 @@ namespace ModuleUnserializer.Entities
 			Mesh msh = new Mesh();
 			msh.Index = s[j++];
 			msh.Index = msh.Index.Substring(msh.Index.IndexOf("_") + 1);
-			msh.Flags = Convert.ToInt32(s[j++]);
+			msh.Flags = Convert.ToInt64(s[j++]);
 			msh.ResourceName = s[j++];
 			msh.TranslationX = Convert.ToSingle(s[j++]);
 			msh.TranslationY = Convert.ToSingle(s[j++]);

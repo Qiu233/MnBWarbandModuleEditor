@@ -30,9 +30,13 @@ namespace ModuleUnserializer.Files
 		public F_Tableau_Mats F_Tableau_Mats;
 		public F_Skills F_Skills;
 		public F_Presentations F_Presentations;
+		public F_MapIcons F_MapIcons;
+		public F_Animations F_Animations;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
+			F_Animations = F_Animations.LoadFromFile(this, MnBPath, module);
+			F_MapIcons = F_MapIcons.LoadFromFile(this, MnBPath, module);
 			F_Presentations = F_Presentations.LoadFromFile(this, MnBPath, module);
 			F_Tableau_Mats = F_Tableau_Mats.LoadFromFile(this, MnBPath, module);
 			F_Skills = F_Skills.LoadFromFile(this, MnBPath, module);

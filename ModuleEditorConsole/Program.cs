@@ -41,7 +41,7 @@ namespace ModuleEditorConsole
 				File.Delete(f);
 			var scriptFile = File.Open(".\\" + Module + "\\module_scripts.py", FileMode.OpenOrCreate);
 			StreamWriter sw = new StreamWriter(scriptFile);
-			StringBuilder s = new StringBuilder("script=[\n");
+			StringBuilder s = new StringBuilder("scripts=[\n");
 			foreach (var m in ModuleInfo.F_Scripts.Scripts)
 				s.Append(m.Decompile() + "\n");
 			s.Append("]\n");

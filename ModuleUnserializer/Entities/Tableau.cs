@@ -9,7 +9,7 @@ namespace ModuleUnserializer.Entities
 	public class Tableau
 	{
 		public string Index;
-		public int Flags;
+		public long Flags;
 		public string MatName;
 		public int Width;
 		public int Height;
@@ -29,7 +29,7 @@ namespace ModuleUnserializer.Entities
 			Tableau tab = new Tableau();
 			tab.Index = s[j++];
 			tab.Index = tab.Index.Substring(tab.Index.IndexOf("_") + 1);
-			tab.Flags = Convert.ToInt32(s[j++]);
+			tab.Flags = Convert.ToInt64(s[j++]);
 			tab.MatName = s[j++];
 
 			tab.Width = Convert.ToInt32(s[j++]);
