@@ -129,7 +129,7 @@ namespace ModuleUnserializer.Entities
 			else if (Type == ParamType.Variable)
 				result.Append("\"$" + Module.F_Variables.Variables[(int)Value] + "\"");
 			else if (Type == ParamType.Register)
-				result.Append("reg" + Value + "");
+				result.Append("reg" + Value);
 			else if (Type == ParamType.Faction)
 				result.Append("\"fac_" + Module.F_Factions.Factions[(int)Value].Index + "\"");
 			else if (Type == ParamType.Script)
@@ -156,6 +156,11 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"psys_" + Module.F_Particle_Systems.Particle_Systems[(int)Value].Index + "\"");
 			else if (Type == ParamType.Scene_Prop)
 				result.Append("\"spr_" + Module.F_Scene_Props.Scene_Props[(int)Value].Index + "\"");
+			else if (Type == ParamType.Item)
+				result.Append("\"itm_" + Module.F_Items.Items[(int)Value].Index + "\"");
+			else if (Type == ParamType.Mesh)
+				result.Append("\"mesh_" + Module.F_Meshes.Meshes[(int)Value].Index + "\"");
+
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

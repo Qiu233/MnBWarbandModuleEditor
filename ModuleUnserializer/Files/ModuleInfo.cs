@@ -26,9 +26,11 @@ namespace ModuleUnserializer.Files
 		public F_Mission_Templates F_Mission_Templates;
 		public F_Particle_Systems F_Particle_Systems;
 		public F_Scene_Props F_Scene_Props;
+		public F_Meshes F_Meshes;
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);
+			F_Meshes = F_Meshes.LoadFromFile(this, MnBPath, module);
 			F_Strings = F_Strings.LoadFromFile(this, MnBPath, module);
 			F_Variables = F_Variables.LoadFromFile(this, MnBPath, module);
 			F_QuickStrings = F_QuickStrings.LoadFromFile(this, MnBPath, module);
