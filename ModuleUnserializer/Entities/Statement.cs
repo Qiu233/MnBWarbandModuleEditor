@@ -94,19 +94,16 @@ namespace ModuleUnserializer.Entities
 			p.Module = mInfo;
 			long l = Convert.ToInt64(s);
 			long tag = l >> 56;
-			if ((tag | 0x00) != 0)
+			if ((tag | 0x00) != 0 && Enum.IsDefined(typeof(ParamType), (ParamType)tag))
 			{
-				if (Enum.IsDefined(typeof(ParamType), (ParamType)tag))
-				{
-					p.Type = (ParamType)tag;
-					long a = 0xFF_FFFF_FFFF_FFFF;
-					p.Value = a & l;
-				}
-				else
-				{
-					p.Type = 0;
-					p.Value = l;
-				}
+				p.Type = (ParamType)tag;
+				long a = 0xFF_FFFF_FFFF_FFFF;
+				p.Value = a & l;
+			}
+			else
+			{
+				p.Type = ParamType.Number;
+				p.Value = l;
 			}
 
 
@@ -120,8 +117,11 @@ namespace ModuleUnserializer.Entities
 		public string Decompile()
 		{
 			StringBuilder result = new StringBuilder();
-			if (Type == 0)
+			if (Type == ParamType.Number)
+			{
+				//Console.WriteLine(Value);
 				result.Append(Value);
+			}
 			else if (Type == ParamType.Quick_String)
 				result.Append(("\"@" + Module.F_QuickStrings.QuickStrings[(int)Value].ValueEn + "\"").Replace('_', ' '));
 			else if (Type == ParamType.Local_Variable)

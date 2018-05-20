@@ -34,7 +34,7 @@ namespace ModuleUnserializer.Entities
 		{
 			StringBuilder result = new StringBuilder();
 			result.Append("[\n");
-			int layer = 0;
+			int layer = 1;
 			foreach (var stmt in Statements)
 			{
 				int t = 0;

@@ -37,7 +37,7 @@ namespace ModuleEditorConsole
 		private static void Decompile()
 		{
 			if (!Directory.Exists(".\\" + Module)) Directory.CreateDirectory(".\\" + Module);
-			foreach (var f in Directory.EnumerateFiles(".\\" + Module))
+			foreach (var f in Directory.EnumerateFiles(".\\" + Module, "*.py"))
 				File.Delete(f);
 			var scriptFile = File.Open(".\\" + Module + "\\module_scripts.py", FileMode.OpenOrCreate);
 			StreamWriter sw = new StreamWriter(scriptFile);
@@ -62,6 +62,7 @@ namespace ModuleEditorConsole
 			{
 				case "decompile":
 					Decompile();
+					Console.WriteLine("Decompilation finished");
 					break;
 				case "quit":
 				case "exit":

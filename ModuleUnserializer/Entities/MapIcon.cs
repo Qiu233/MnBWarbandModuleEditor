@@ -25,7 +25,6 @@ namespace ModuleUnserializer.Entities
 		{
 			MapIcon mi = new MapIcon();
 			mi.Index = s[j++];
-			mi.Index = mi.Index.Substring(mi.Index.IndexOf("_") + 1);
 			mi.Flags = Convert.ToInt64(s[j++]);
 			mi.MeshName = s[j++];
 			mi.Scale = Convert.ToSingle(s[j++]);
