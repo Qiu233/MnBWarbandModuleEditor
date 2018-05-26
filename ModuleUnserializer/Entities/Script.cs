@@ -35,5 +35,6 @@ namespace ModuleUnserializer.Entities
 			result.Append("),");
 			return result.ToString();
 		}
+		
 	}
 }

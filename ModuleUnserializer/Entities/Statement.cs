@@ -118,10 +118,7 @@ namespace ModuleUnserializer.Entities
 		{
 			StringBuilder result = new StringBuilder();
 			if (Type == ParamType.Number)
-			{
-				//Console.WriteLine(Value);
 				result.Append(Value);
-			}
 			else if (Type == ParamType.Quick_String)
 				result.Append(("\"@" + Module.F_QuickStrings.QuickStrings[(int)Value].ValueEn + "\"").Replace('_', ' '));
 			else if (Type == ParamType.Local_Variable)
@@ -170,7 +167,6 @@ namespace ModuleUnserializer.Entities
 				result.Append("\"icon_" + Module.F_MapIcons.MapIcons[(int)Value].Index + "\"");
 			else if (Type == ParamType.Animation)
 				result.Append("\"anim_" + Module.F_Animations.Actions[(int)Value].Index + "\"");
-
 			else
 				result.Append(Type.ToString());
 			return result.ToString();

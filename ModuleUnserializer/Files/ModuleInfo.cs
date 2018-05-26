@@ -7,31 +7,31 @@ namespace ModuleUnserializer.Files
 {
 	public class ModuleInfo
 	{
-		public F_Language F_Language;
+		public F_Language F_Language { get; }
 
-		public F_Strings F_Strings;
-		public F_Menus F_Menus;
-		public F_Variables F_Variables;
-		public F_QuickStrings F_QuickStrings;
-		public F_Factions F_Factions;
-		public F_Items F_Items;
-		public F_SimpleTriggers F_SimpleTriggers;
-		public F_Scripts F_Scripts;
-		public F_Parties F_Parties;
-		public F_Troops F_Troops;
-		public F_Sounds F_Sounds;
-		public F_Quests F_Quests;
-		public F_Party_Templates F_Party_Templates;
-		public F_Scenes F_Scenes;
-		public F_Mission_Templates F_Mission_Templates;
-		public F_Particle_Systems F_Particle_Systems;
-		public F_Scene_Props F_Scene_Props;
-		public F_Meshes F_Meshes;
-		public F_Tableau_Mats F_Tableau_Mats;
-		public F_Skills F_Skills;
-		public F_Presentations F_Presentations;
-		public F_MapIcons F_MapIcons;
-		public F_Animations F_Animations;
+		public F_Strings F_Strings { get; }
+		public F_Menus F_Menus { get; }
+		public F_Variables F_Variables { get; }
+		public F_QuickStrings F_QuickStrings { get; }
+		public F_Factions F_Factions { get; }
+		public F_Items F_Items { get; }
+		public F_SimpleTriggers F_SimpleTriggers { get; }
+		public F_Scripts F_Scripts { get; }
+		public F_Parties F_Parties { get; }
+		public F_Troops F_Troops { get; }
+		public F_Sounds F_Sounds { get; }
+		public F_Quests F_Quests { get; }
+		public F_Party_Templates F_Party_Templates { get; }
+		public F_Scenes F_Scenes { get; }
+		public F_Mission_Templates F_Mission_Templates { get; }
+		public F_Particle_Systems F_Particle_Systems { get; }
+		public F_Scene_Props F_Scene_Props { get; }
+		public F_Meshes F_Meshes { get; }
+		public F_Tableau_Mats F_Tableau_Mats { get; }
+		public F_Skills F_Skills { get; }
+		public F_Presentations F_Presentations { get; }
+		public F_MapIcons F_MapIcons { get; }
+		public F_Animations F_Animations { get; }
 		public ModuleInfo(string MnBPath, string module, string language)
 		{
 			F_Language = new F_Language(MnBPath, module, language);

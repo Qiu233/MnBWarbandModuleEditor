@@ -55,6 +55,10 @@
       <Project>{21e1ee4d-f3e2-4dfd-b3d4-7a52ab1f831f}</Project>
       <Name>ModuleUnserializer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSCompiler\MSCompiler.csproj">
+      <Project>{0356135d-34b9-4cd7-aaca-025c7a49ec64}</Project>
+      <Name>MSCompiler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

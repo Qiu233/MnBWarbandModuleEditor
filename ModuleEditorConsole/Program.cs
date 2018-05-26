@@ -1,4 +1,7 @@
 ﻿using ModuleUnserializer.Files;
+using MSCompiler;
+using MSCompiler.Lex;
+using MSCompiler.Parse;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +52,7 @@ namespace ModuleEditorConsole
 			sw.Close();
 		}
 
+
 		/// <summary>
 		/// 处理指令
 		/// </summary>
@@ -60,6 +64,13 @@ namespace ModuleEditorConsole
 			string opCode = cmd[0].ToLower();
 			switch (opCode)
 			{
+				case "compile":
+					using (var r = new StreamReader("./A.ms"))
+					{
+						Parser p = new Parser(new Tokenizer(r));
+						p.Parse();
+					}
+					break;
 				case "decompile":
 					Decompile();
 					Console.WriteLine("Decompilation finished");
