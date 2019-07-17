@@ -64,5 +64,10 @@ namespace ModuleUnserializer.Entities
 				party.MenuItems.Add(MenuItem.FromString(mInfo, s, ref j));
 			return party;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

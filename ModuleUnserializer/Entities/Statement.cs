@@ -171,6 +171,21 @@ namespace ModuleUnserializer.Entities
 				result.Append(Type.ToString());
 			return result.ToString();
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+
+			BigInteger result = 0;
+			if (Type == ParamType.Number)
+			{
+				result = Value;
+			}
+			else
+			{
+				result = Value | ((ulong)Type << 56);
+			}
+			return result.ToString();
+		}
 	}
 
 	/// <summary>
@@ -251,6 +266,17 @@ namespace ModuleUnserializer.Entities
 			foreach (var param in Params)
 				result.Append("," + param.Decompile());
 			result.Append(")");
+			return result.ToString();
+		}
+
+		public string Compile(CompilationContext ctx, List<string> locals)
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append($"{(long)Opcode} {Params.Count} ");
+			foreach (var p in Params)
+			{
+				result.Append($"{p.Compile(ctx)} ");
+			}
 			return result.ToString();
 		}
 	}

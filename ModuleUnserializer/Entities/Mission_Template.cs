@@ -36,6 +36,11 @@ namespace ModuleUnserializer.Entities
 
 			return trg;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	public class MTEntry
 	{
@@ -94,6 +99,11 @@ namespace ModuleUnserializer.Entities
 			}
 
 			return mt;
+		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

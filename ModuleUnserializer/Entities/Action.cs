@@ -60,5 +60,10 @@ namespace ModuleUnserializer.Entities
 			a._Unknown5 = Convert.ToSingle(s[j++]);
 			return a;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

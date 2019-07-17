@@ -68,5 +68,10 @@ namespace ModuleUnserializer.Entities
 			party.Bearing = Convert.ToSingle(s[j++]);
 			return party;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

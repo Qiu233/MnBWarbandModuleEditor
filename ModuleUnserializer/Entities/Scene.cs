@@ -50,5 +50,10 @@ namespace ModuleUnserializer.Entities
 
 			return scn;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -29,5 +29,10 @@ namespace ModuleUnserializer.Entities
 			tab.Description = s[j++];
 			return tab;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -42,5 +42,9 @@ namespace ModuleUnserializer.Entities
 			return faction;
 		}
 
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

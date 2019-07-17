@@ -102,5 +102,10 @@ namespace ModuleUnserializer.Entities
 
 			return trp;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

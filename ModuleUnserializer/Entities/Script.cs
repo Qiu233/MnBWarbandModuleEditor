@@ -10,14 +10,14 @@ namespace ModuleUnserializer.Entities
 	{
 		public ModuleInfo Module;
 		public string Name;
-		public int v;
+		public double v;
 		public Statement_Block Statements;
 		public static Script FromString(ModuleInfo minfo, string[] s, ref int j)
 		{
 			Script script = new Script();
 			script.Module = minfo;
 			script.Name = s[j++];
-			script.v = Convert.ToInt32(s[j++]);
+			script.v = Convert.ToDouble(s[j++]);
 
 			script.Statements = Statement_Block.FromString(minfo, s, ref j);
 
@@ -35,6 +35,14 @@ namespace ModuleUnserializer.Entities
 			result.Append("),");
 			return result.ToString();
 		}
-		
+
+		public string Compile(CompilationContext ctx)
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append($"{Name} {v}\n");
+			result.Append(Statements.Compile(ctx));
+			result.AppendLine();
+			return result.ToString();
+		}
 	}
 }

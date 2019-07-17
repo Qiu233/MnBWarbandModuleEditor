@@ -56,10 +56,6 @@ namespace MSCompiler.Parse
 		{
 			NextToken();
 			var fs = GetFunctions();
-			foreach (var f in fs)
-			{
-				Console.WriteLine(f.Name);
-			}
 		}
 		private List<Function> GetFunctions()
 		{
@@ -497,6 +493,12 @@ namespace MSCompiler.Parse
 		private Expr_Call CallFunction(string name, List<Expression> arg)
 		{
 			return new Expr_Call() { Name = name, Arguments = arg };
+		}
+
+		private string ToASMCode()
+		{
+			StringBuilder code = new StringBuilder();
+			return code.ToString();
 		}
 	}
 }

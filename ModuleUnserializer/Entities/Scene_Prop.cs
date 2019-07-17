@@ -36,5 +36,10 @@ namespace ModuleUnserializer.Entities
 				sp.Triggers.Add(SimpleTrigger.FromString(mInfo, s, ref j));
 			return sp;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

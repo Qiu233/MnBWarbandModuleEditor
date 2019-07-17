@@ -1,4 +1,5 @@
-﻿using ModuleUnserializer.Files;
+﻿using ModuleUnserializer;
+using ModuleUnserializer.Files;
 using MSCompiler;
 using MSCompiler.Lex;
 using MSCompiler.Parse;
@@ -25,7 +26,9 @@ namespace ModuleEditorConsole
 			ModuleCheck();
 			ModuleInfo = new ModuleInfo(MnBPath, Module, Language);
 			Console.WriteLine("Module:\"" + Module + "\"已读入......");
-			OnCommand += Handler_OnCommand;
+			File.WriteAllText("./test_scripts.txt", ModuleInfo.F_Scripts.Compile(CompilationContext.Create()));
+			//Console.WriteLine((ulong)ModuleInfo.F_Scripts.Scripts[0].Statements.Statements[0].Params[0].Value);
+			/*OnCommand += Handler_OnCommand;
 			while (true)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
@@ -34,7 +37,7 @@ namespace ModuleEditorConsole
 				string[] command = Console.ReadLine().Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 				OnCommand?.Invoke(command);
 			}
-
+			*/
 		}
 
 		private static void Decompile()
@@ -46,7 +49,7 @@ namespace ModuleEditorConsole
 			StreamWriter sw = new StreamWriter(scriptFile);
 			StringBuilder s = new StringBuilder("scripts=[\n");
 			foreach (var m in ModuleInfo.F_Scripts.Scripts)
-				s.Append(m.Decompile() + "\n");
+				s.Append(m.Decompile() + "\n\n");
 			s.Append("]\n");
 			sw.Write(s);
 			sw.Close();
@@ -69,6 +72,7 @@ namespace ModuleEditorConsole
 					{
 						Parser p = new Parser(new Tokenizer(r));
 						p.Parse();
+
 					}
 					break;
 				case "decompile":

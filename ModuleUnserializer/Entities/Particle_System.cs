@@ -88,5 +88,10 @@ namespace ModuleUnserializer.Entities
 
 			return ptc_sys;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

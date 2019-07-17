@@ -30,5 +30,10 @@ namespace ModuleUnserializer.Entities
 
 			return qst;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

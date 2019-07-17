@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompilationContext.cs" />
     <Compile Include="Entities\Action.cs" />
     <Compile Include="Entities\Faction.cs" />
     <Compile Include="Entities\Item.cs" />

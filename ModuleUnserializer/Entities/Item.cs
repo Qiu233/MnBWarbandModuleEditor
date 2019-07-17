@@ -416,11 +416,6 @@ namespace ModuleUnserializer.Entities
 				Properties = (Properties & BigInteger.Parse("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00", System.Globalization.NumberStyles.HexNumber)) + (int)value;
 			}
 		}
-		private static BigInteger GetBigInt(string str)
-		{
-			BigInteger.TryParse(str, out BigInteger bi);
-			return bi;
-		}
 		public static Item FromString(ModuleInfo minfo, string[] s, ref int j)
 		{
 			Dictionary<string, string> itemNames = minfo.F_Language["item_kinds"];
@@ -439,11 +434,11 @@ namespace ModuleUnserializer.Entities
 			}
 			item.Meshes = new List<KeyValuePair<string, BigInteger>>(Convert.ToInt32(s[j++]));
 			for (int i = 0; i < item.Meshes.Capacity; i++)
-				item.Meshes.Add(new KeyValuePair<string, BigInteger>(s[j++], GetBigInt(s[j++])));
-			item.Properties = GetBigInt(s[j++]);
-			item.Capabilities = GetBigInt(s[j++]);
+				item.Meshes.Add(new KeyValuePair<string, BigInteger>(s[j++], BigInteger.Parse(s[j++])));
+			item.Properties = BigInteger.Parse(s[j++]);
+			item.Capabilities = BigInteger.Parse(s[j++]);
 			item.Price = Convert.ToInt32(s[j++]);
-			item.Modifiers = GetBigInt(s[j++]);
+			item.Modifiers = BigInteger.Parse(s[j++]);
 
 			item.Weight = Convert.ToDouble(s[j++]);
 			item.Abundance = Convert.ToInt32(s[j++]);
@@ -506,6 +501,11 @@ namespace ModuleUnserializer.Entities
 			foreach (var st in SimpleTriggers)
 				item.SimpleTriggers.Add(st);
 			return item;
+		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

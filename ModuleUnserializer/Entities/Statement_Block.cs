@@ -56,5 +56,14 @@ namespace ModuleUnserializer.Entities
 			result.Append("]");
 			return result.ToString();
 		}
+		public string Compile(CompilationContext ctx)
+		{
+			StringBuilder result = new StringBuilder();
+			List<string> locals = new List<string>();
+			result.Append($" {Statements.Count} ");
+			foreach (var s in Statements)
+				result.Append(s.Compile(ctx, locals));
+			return result.ToString();
+		}
 	}
 }

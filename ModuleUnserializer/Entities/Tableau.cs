@@ -43,5 +43,10 @@ namespace ModuleUnserializer.Entities
 			tab.Statements = Statement_Block.FromString(mInfo, s, ref j);
 			return tab;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -26,5 +26,10 @@ namespace ModuleUnserializer.Entities
 				str.Text = mInfo.F_Language["game_strings"][str.Index];
 			return str;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

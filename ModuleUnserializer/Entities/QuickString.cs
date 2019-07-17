@@ -22,5 +22,10 @@ namespace ModuleUnserializer.Entities
 				p.Value = mInfo.F_Language["quick_strings"][id];
 			return p;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

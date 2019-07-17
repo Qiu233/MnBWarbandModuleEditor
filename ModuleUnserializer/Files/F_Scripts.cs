@@ -36,5 +36,18 @@ namespace ModuleUnserializer.Files
 				Scripts.Add(script);
 			}
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append("scriptsfile version 1\n");
+			result.Append(Scripts.Count);
+			result.AppendLine();
+			foreach (var s in Scripts)
+			{
+				result.Append(s.Compile(ctx));
+			}
+			return result.ToString();
+		}
 	}
 }

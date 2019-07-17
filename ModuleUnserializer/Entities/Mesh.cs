@@ -49,5 +49,10 @@ namespace ModuleUnserializer.Entities
 
 			return msh;
 		}
+
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
