@@ -27,6 +27,7 @@ namespace ModuleEditorConsole
 			ModuleInfo = new ModuleInfo(MnBPath, Module, Language);
 			Console.WriteLine("Module:\"" + Module + "\"已读入......");
 			File.WriteAllText("./test_scripts.txt", ModuleInfo.F_Scripts.Compile(CompilationContext.Create()));
+			File.WriteAllText("./test_item_kinds1.txt", ModuleInfo.F_Items.Compile(CompilationContext.Create()));
 			//Console.WriteLine((ulong)ModuleInfo.F_Scripts.Scripts[0].Statements.Statements[0].Params[0].Value);
 			/*OnCommand += Handler_OnCommand;
 			while (true)

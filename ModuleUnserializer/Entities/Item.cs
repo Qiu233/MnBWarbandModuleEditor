@@ -463,6 +463,7 @@ namespace ModuleUnserializer.Entities
 			return item;
 		}
 
+
 		public object Clone()
 		{
 			var item = new Item()
@@ -505,7 +506,29 @@ namespace ModuleUnserializer.Entities
 
 		public string Compile(CompilationContext ctx)
 		{
-			throw new NotImplementedException();
+			StringBuilder result = new StringBuilder();
+			result.Append($" itm_{Index} {NameEn} {NameEn} {Meshes.Count} ");
+			foreach (var iv in Meshes)
+				result.Append($" {iv.Key} {iv.Value.ToString()} ");
+			result.Append(
+				$" {Properties.ToString()} {Capabilities.ToString()} {Price} {Modifiers.ToString()}" +
+				$" {Weight} {Abundance} {Head_Armor} {Body_Armor} {Leg_Armor} {Difficulty} {Hit_Points}" +
+				$" {Speed_Rating} {Missile_Speed} {Weapon_Length} {Max_Ammo} {Thrust_Damage} {Swing_Damage}");
+			result.AppendLine();
+			result.Append($" {Factions.Count}");
+			result.AppendLine();
+			if (Factions.Count > 0)
+			{
+				foreach (var f in Factions)
+					result.Append($" {Module.F_Factions.Factions.IndexOf(f)}");
+				result.AppendLine();
+			}
+			result.Append($"{SimpleTriggers.Count}");
+			result.AppendLine();
+			foreach (var t in SimpleTriggers)
+				result.Append(t.Compile(ctx));
+			result.AppendLine();
+			return result.ToString();
 		}
 	}
 }

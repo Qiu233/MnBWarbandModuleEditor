@@ -39,7 +39,8 @@ namespace ModuleUnserializer.Entities
 		public string Compile(CompilationContext ctx)
 		{
 			StringBuilder result = new StringBuilder();
-			result.Append($"{Name} {v}\n");
+			result.Append($"{Name} {v}");
+			result.AppendLine();
 			result.Append(Statements.Compile(ctx));
 			result.AppendLine();
 			return result.ToString();

@@ -40,7 +40,8 @@ namespace ModuleUnserializer.Files
 		public string Compile(CompilationContext ctx)
 		{
 			StringBuilder result = new StringBuilder();
-			result.Append("scriptsfile version 1\n");
+			result.Append("scriptsfile version 1");
+			result.AppendLine();
 			result.Append(Scripts.Count);
 			result.AppendLine();
 			foreach (var s in Scripts)

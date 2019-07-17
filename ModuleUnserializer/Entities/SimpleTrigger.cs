@@ -9,7 +9,7 @@ namespace ModuleUnserializer.Entities
 	public class SimpleTrigger
 	{
 		public ModuleInfo Module;
-		public float Interval;
+		public double Interval;
 		public Statement_Block Block;
 
 		private SimpleTrigger()
@@ -20,14 +20,18 @@ namespace ModuleUnserializer.Entities
 		{
 			SimpleTrigger trigger = new SimpleTrigger();
 			trigger.Module = mInfo;
-			trigger.Interval = Convert.ToSingle(c[j++]);
+			trigger.Interval = Convert.ToDouble(c[j++]);
 			trigger.Block = Statement_Block.FromString(mInfo, c, ref j);
 			return trigger;
 		}
 
 		public string Compile(CompilationContext ctx)
 		{
-			throw new NotImplementedException();
+			StringBuilder result = new StringBuilder();
+			result.Append($"{Interval} ");
+			result.Append(Block.Compile(ctx));
+			result.AppendLine();
+			return result.ToString();
 		}
 	}
 }

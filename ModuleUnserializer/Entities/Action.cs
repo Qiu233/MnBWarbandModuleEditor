@@ -28,6 +28,10 @@ namespace ModuleUnserializer.Entities
 				mi.Animations.Add(Animation.FromString(mInfo, s, ref j));
 			return mi;
 		}
+		public string Compile(CompilationContext ctx)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	public class Animation
 	{

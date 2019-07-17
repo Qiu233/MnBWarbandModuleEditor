@@ -61,5 +61,18 @@ namespace ModuleUnserializer.Files
 					Items[i - 1].NextItemAsMeleeEnabled = Items[i - 1].IsWeapon && Items[i].IsWeapon;
 			}
 		}
+		public string Compile(CompilationContext ctx)
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append("itemsfile version 3");
+			result.AppendLine();
+			result.Append(Items.Count);
+			result.AppendLine();
+			foreach (var i in Items)
+			{
+				result.Append(i.Compile(ctx));
+			}
+			return result.ToString();
+		}
 	}
 }
